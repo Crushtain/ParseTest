@@ -1,4 +1,4 @@
-package iternal
+package clean
 
 import "strings"
 
