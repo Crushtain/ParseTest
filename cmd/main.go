@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ParseTest/iternal"
 	"encoding/json"
 	"fmt"
 	colly "github.com/gocolly/colly"
@@ -34,6 +35,8 @@ func main() {
 		prod.Number = cleanNumber[1]
 		prod.Number = strings.TrimSpace(prod.Number)
 		prod.Name = name
+		prod.Name = iternal.Clean(prod.Name)
+
 		result = append(result, prod)
 
 	})
