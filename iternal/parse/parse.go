@@ -2,6 +2,7 @@ package parse
 
 import (
 	"ParseTest/iternal/clean"
+	"ParseTest/iternal/newUrl"
 	"encoding/json"
 	"fmt"
 	"github.com/gocolly/colly"
@@ -17,6 +18,9 @@ type Product struct {
 
 func Parse() {
 	var result []Product
+	var key string
+
+	url := newUrl.NewURL(key)
 
 	coll := colly.NewCollector()
 
@@ -26,9 +30,9 @@ func Parse() {
 
 	coll.OnHTML(".marketplace-unit.ready", func(coll *colly.HTMLElement) {
 		number := coll.ChildText(".marketplace-unit__info__name")
+		cleanNumber := strings.Split(number, "№")
 		name := coll.ChildText(".marketplace-unit__title")
 
-		cleanNumber := strings.Split(number, "№")
 		prod := Product{}
 
 		prod.Number = cleanNumber[1]
@@ -40,7 +44,7 @@ func Parse() {
 
 	})
 
-	err := coll.Visit("https://www.fabrikant.ru/trades/procedure/search/?type=0&procedure_stage=0&price_from=&price_to=&currency=0&date_type=date_publication&date_from=&date_to=&ensure=all&count_on_page=10&order_direction=1&type_hash=1561441166&query=usb")
+	err := coll.Visit(url)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
