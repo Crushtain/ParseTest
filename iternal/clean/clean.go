@@ -13,9 +13,9 @@ func Name(prodName string) string {
 }
 
 func Number(prodNumber string) string {
-	r := regexp.MustCompile("\\s+")
+	regex := regexp.MustCompile("\\s+")
 	prodNumber = strings.ReplaceAll(prodNumber, "\n", "")
 
-	prodNumber = r.ReplaceAllString(prodNumber, " ")
+	prodNumber = regex.ReplaceAllString(prodNumber, " ")
 	return prodNumber
 }
