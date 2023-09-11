@@ -1,10 +1,21 @@
 package clean
 
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
 
-func Clean(prodName string) string {
+func Name(prodName string) string {
 	prodName = strings.ReplaceAll(prodName, "\n", "")
 	prodName = strings.ReplaceAll(prodName, "\"", "")
 	prodName = strings.ReplaceAll(prodName, `"\`, "")
 	return prodName
+}
+
+func Number(prodNumber string) string {
+	r := regexp.MustCompile("\\s+")
+	prodNumber = strings.ReplaceAll(prodNumber, "\n", "")
+
+	prodNumber = r.ReplaceAllString(prodNumber, " ")
+	return prodNumber
 }

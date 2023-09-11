@@ -37,8 +37,9 @@ func Parse() {
 
 		prod.Number = cleanNumber[1]
 		prod.Number = strings.TrimSpace(prod.Number)
+		prod.Number = clean.Number(prod.Number)
 		prod.Name = name
-		prod.Name = clean.Clean(prod.Name)
+		prod.Name = clean.Name(prod.Name)
 
 		result = append(result, prod)
 
